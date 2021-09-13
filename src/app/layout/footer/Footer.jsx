@@ -5,13 +5,13 @@ const Footer = () => {
     <>
       <footer>
         <section id="footer-dark">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-4">
-                <div class="image">
-                  <img src="assets/img/logo.png" alt="" srcset="" />
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-4">
+                <div className="image">
+                  <img src="assets/img/logo.png" alt="" srcSet="" />
                 </div>
-                <div class="footer-text">
+                <div className="footer-text">
                   <p>
                     Lorem Ipsum is simply dummy text of the printing and type
                     setting industry. Lorem Ipsum has been the industry's
@@ -20,8 +20,8 @@ const Footer = () => {
                 </div>
               </div>
 
-              <div class="col-lg-4 d-flex justify-content-center">
-                <div class="links">
+              <div className="col-lg-4 d-flex justify-content-center">
+                <div className="links">
                   <h4>Categories</h4>
                   <ul>
                     <li>
@@ -42,13 +42,13 @@ const Footer = () => {
                   </ul>
                 </div>
               </div>
-              <div class="col-lg-4">
+              <div className="col-lg-4">
                 <h4>Contact Info</h4>
                 <p>
                   Possible offering at contempt mr distance stronger an.
                   Attachment excellence announcing
                 </p>
-                <div class="contact-info">
+                <div className="contact-info">
                   <ul>
                     <li>
                       <strong>Email: </strong> sahra@kataraban.com
@@ -58,41 +58,41 @@ const Footer = () => {
                     </li>
                   </ul>
                 </div>
-                <ul class="social-icons">
-                  <li class="facebook">
+                <ul className="social-icons">
+                  <li className="facebook">
                     <a href="!#">
-                      <i class="fab fa-facebook-f"></i>
+                      <i className="fab fa-facebook-f"></i>
                     </a>
                   </li>
-                  <li class="twitter">
+                  <li className="twitter">
                     <a href="!#">
-                      <i class="fab fa-twitter"></i>
+                      <i className="fab fa-twitter"></i>
                     </a>
                   </li>
-                  <li class="youtube">
+                  <li className="youtube">
                     <a href="!#">
-                      <i class="fab fa-youtube"></i>
+                      <i className="fab fa-youtube"></i>
                     </a>
                   </li>
-                  <li class="instagram">
+                  <li className="instagram">
                     <a href="!#">
-                      <i class="fab fa-instagram"></i>
+                      <i className="fab fa-instagram"></i>
                     </a>
                   </li>
                 </ul>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="validThemes">
+            <div className="row">
+              <div className="col-lg-6">
+                <div className="validThemes">
                   <p>
                     &copy; Copyright 2021. All Rights Reserved by{" "}
                     <a href="!#">Kataraban</a>
                   </p>
                 </div>
               </div>
-              <div class="col-lg-6">
-                <div class="footerEnd-text ">
+              <div className="col-lg-6">
+                <div className="footerEnd-text ">
                   <ul>
                     <li>
                       <a href="!#">Terms</a>
@@ -108,7 +108,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div class="footer-shape"></div>
+          <div className="footer-shape"></div>
         </section>
       </footer>
     </>
