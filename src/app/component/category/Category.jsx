@@ -9,7 +9,7 @@ const Category = () => {
   const allCategories = useSelector(
     (state) => state.CategoryReducer.allCategory
   );
-  console.log(allCategories);
+  // console.log(allCategories);
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -15,7 +15,7 @@ const App = () => {
           <Route exact path="/">
             <HomePage />
           </Route>
-          <Route  path="category/:id">
+          <Route exact path="/category/:id">
             <NewsByCategory/>
           </Route>
           <Route  path="news/:id">
