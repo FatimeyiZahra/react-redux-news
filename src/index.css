@@ -2716,3 +2716,11 @@ a:hover {
   margin-bottom: 16px;
   min-height: 50px;
 }
+
+#newslist{
+  height: 100vh;
+  width:100%;
+}
+.newslistcontainer{
+  padding-top: 150px;
+}

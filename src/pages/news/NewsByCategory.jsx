@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { getNewsByCategoryId } from "../../redux/actions/NewsByCategoryIdAction";
+import { getNewsByCategoryId } from "../../redux/actions/NewsAction";
 
 const NewsByCategory = () => {
   const newsByCategoryId = useSelector(
     (state) => state.NewsByCategoryIdReducer.newsByCategoryId
   );
 
-//   console.log(newsByCategoryId);
+    // console.log(newsByCategoryId);
 
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -34,12 +34,12 @@ const NewsByCategory = () => {
                     <div key={item.id} className="col-lg-6">
                       <div className="last-added-news">
                         <div className="news-item pos-relative">
-                          <a
-                            href="blog-detail-1.html"
+                          <Link
                             className="news-pic trans-03 shadow"
+                            to={`/news/${item.id}`}
                           >
                             <img src={item.photos[0]} alt="IMG" />
-                          </a>
+                          </Link>
                           <div className="p-t-15 news-title">
                             <span>
                               <a href="!#" className="name trans-03">
