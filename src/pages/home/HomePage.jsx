@@ -5,14 +5,12 @@ import { Link } from "react-router-dom";
 import { getAllNews } from "../../redux/actions/NewsAction";
 
 const HomePage = () => {
-  const allNews = useSelector((state) => state.AllNewsReducer.allNews);
-  //   console.log(allNews);
+  const allNews = useSelector((state) => state.NewsReducer.news);
+    // console.log(allNews);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    axios
-      .get("https://localhost:44313/V1/News/AllNews")
-      .then((res) => dispatch(getAllNews(res.data)));
+    dispatch(getAllNews())
   }, []);
 
   return (

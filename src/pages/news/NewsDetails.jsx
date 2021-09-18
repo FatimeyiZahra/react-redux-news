@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { getNewsDetails } from "../../redux/actions/NewsAction";
+import { setNewsDetails } from "../../redux/actions/NewsAction";
 
 const NewsDetails = () => {
   const newsDetails = useSelector(
-    (state) => state.NewsDetailsReducer.newsDetails
+    (state) => state.NewsReducer.newsDetails
   );
   console.log(newsDetails);
 
@@ -16,7 +16,7 @@ const NewsDetails = () => {
   useEffect(() => {
     axios
       .get(`https://localhost:44313/V1/News/news/${id}`)
-      .then((res) => dispatch(getNewsDetails(res.data)));
+      .then((res) => dispatch(setNewsDetails(res.data)));
   }, []);
 
   return (

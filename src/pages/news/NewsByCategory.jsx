@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { getNewsByCategoryId } from "../../redux/actions/NewsAction";
+import { setNewsByCategoryId } from "../../redux/actions/NewsAction";
 
 const NewsByCategory = () => {
   const newsByCategoryId = useSelector(
-    (state) => state.NewsByCategoryIdReducer.newsByCategoryId
+    (state) => state.NewsReducer.newsByCategoryId
   );
 
     // console.log(newsByCategoryId);
@@ -19,7 +19,7 @@ const NewsByCategory = () => {
   useEffect(() => {
     axios
       .get(`https://localhost:44313/V1/News/category?categoryId=${id}`)
-      .then((res) => dispatch(getNewsByCategoryId(res.data)));
+      .then((res) => dispatch(setNewsByCategoryId(res.data)));
   }, [id]);
 
   return (

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
-import { getAllCategory } from "../../../redux/actions/CategoryAction";
+import { setAllCategory } from "../../../redux/actions/CategoryAction";
 
 const Category = () => {
   const allCategories = useSelector(
@@ -13,9 +13,7 @@ const Category = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axios
-      .get("https://localhost:44313/V1/News/categories")
-      .then((res) => dispatch(getAllCategory(res.data)));
+   dispatch(setAllCategory())
   }, []);
   return (
     <>
