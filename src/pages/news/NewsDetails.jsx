@@ -8,15 +8,13 @@ const NewsDetails = () => {
   const newsDetails = useSelector(
     (state) => state.NewsReducer.newsDetails
   );
-  console.log(newsDetails);
+  // console.log(newsDetails);
 
   const dispatch = useDispatch();
   const { id } = useParams();
 
   useEffect(() => {
-    axios
-      .get(`https://localhost:44313/V1/News/news/${id}`)
-      .then((res) => dispatch(setNewsDetails(res.data)));
+    dispatch(setNewsDetails(id))
   }, []);
 
   return (
