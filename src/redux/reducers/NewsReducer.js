@@ -1,14 +1,14 @@
 import * as actionTypes from "../actions/actionTypes";
 const initialState = {
-    news:[],
-    newsDetails:{
-      id:'',
-      title:'',
-      photos:[],
-      text:'',
-      addedDate:''
-  }
-  };
+  news: [],
+  newsDetails: {
+    id: "",
+    title: "",
+    photos: [],
+    text: "",
+    addedDate: "",
+  },
+};
 
 const NewsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -20,7 +20,6 @@ const NewsReducer = (state = initialState, action) => {
       return (state = { ...state, news: action.payload });
     case actionTypes.Set_All_Category:
       return (state = { ...state, allCategory: action.payload });
-
     default:
       return state;
   }

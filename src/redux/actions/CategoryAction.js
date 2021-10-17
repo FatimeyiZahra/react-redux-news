@@ -6,5 +6,4 @@ export const setAllCategory = () => dispatch=>{
  .then((res)=>{
    dispatch({type:actionTypes.Set_All_Category,payload:res.data})
  })
-
 };
