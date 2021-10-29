@@ -14,27 +14,12 @@ const Create = () => {
 
   const Create=(e)=>{
     e.preventDefault();
-    // const article = {
-    //   method : "POST",
-    //   headers: { 'Content-Type': 'application/json' },
-    //  body : JSON.stringify({title:`${titleRef.current.value}`,
-    //                         text:`${textRef.current.value}`})
-    //  }
-    //  fetch(`https://localhost:44313/V1/News`,article)
-    //  .then(res => res.json()) 
-    //  .then(data => console.log(data))
-    // const article={ tite:titleRef.current.value,
-    //              text:textRef.current.value
-    //            }
+    const article={
+      title:`${titleRef.current.value}`,
+      text:`${textRef.current.value}`
+     }
 
-    // axios.post(`https://localhost:44313/V1/News`,article)
-    // console.log(article)
-    // .then(res=>console.log(res.data));
-
-       axios.post(`https://localhost:44313/V1/News`,{
-        title:`${titleRef.current.value}`,
-                                text:`${textRef.current.value}`
-       })
+     axios.post(`https://localhost:44313/V1/News`,article)
     .then(res=>console.log(res.data));
      
   }
@@ -48,7 +33,6 @@ const Create = () => {
             type="text"
             class="form-control"
             // onChange={onInputChange}
-            // value={newsDetails.title}
             ref={titleRef}
           />
         </div>
@@ -58,7 +42,6 @@ const Create = () => {
             type="text"
             class="form-control"
             // onChange={onInputChange}
-            // value={newsDetails.text}
             ref={textRef}
           />
         </div>

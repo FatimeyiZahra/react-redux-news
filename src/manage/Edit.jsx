@@ -26,37 +26,28 @@ const Edit = () => {
 
   const Edit=(e)=>{
     e.preventDefault();
-    const article = {
-      method : "PUT",
-      headers: { 'Content-Type': 'application/json' },
-     body : JSON.stringify({
-                            id:newsDetails.id,
-                            title:`${titleRef.current.value}`,
-                            text:`${textRef.current.value}`
-                          })
-     }
-     fetch(`https://localhost:44313/V1/News/${id}`,article)
-     console.log(article)
-     .then(res => res.json()) 
-     console.log(article)
-     .then(data => console.log(data))
-    // const article={ id:newsDetails.id,
+    // const article = {
+    //   method : "PUT",
+    //   headers: { 'Content-Type': 'application/json' },
+    //  body : JSON.stringify({
+    //                         id:newsDetails.id,
     //                         title:`${titleRef.current.value}`,
     //                         text:`${textRef.current.value}`
-    //            }
+    //                       })
+    //  }
+    //  fetch(`https://localhost:44313/V1/News/${id}`,article)
+    //  console.log(article)
+    //  .then(res => res.json()) 
+    //  console.log(article)
+    //  .then(data => console.log(data))
+    const article={ id:newsDetails.id,
+                            title:`${titleRef.current.value}`,
+                            text:`${textRef.current.value}`
+               };
 
-    // axios.put(`https://localhost:44313/V1/News/${id}`,article)
-    // console.log(article)
-    // .then(res=>console.log(res.data))
-     
-    //  axios.put(`https://localhost:44313/V1/News/${id}`,
-    //  {            id:newsDetails.id,
-    //                           title:`${titleRef.current.value}`,
-    //                           text:`${textRef.current.value}`
-    //              }
-     
-    //  )
-    // .then(res=>console.log(res.data))
+    axios.put(`https://localhost:44313/V1/News/${id}`,article)
+    console.log(article)
+   
   }
 
   return (
