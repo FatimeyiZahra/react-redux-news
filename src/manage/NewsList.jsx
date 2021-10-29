@@ -12,7 +12,7 @@ const NewsList = () => {
     dispatch(getAllNews())
   }, []);
   return (
-    <section id="newslist">
+    <section id="newslist" className="margin-bottom">
       <div className="container">
         <div className="newslistcontainer">
             <div className="col-lg-3">

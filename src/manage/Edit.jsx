@@ -24,28 +24,60 @@ const Edit = () => {
   const titleRef = useRef();
   const textRef = useRef();
 
-  const saveChange=()=>{
+  const Edit=(e)=>{
+    e.preventDefault();
     const article = {
       method : "PUT",
       headers: { 'Content-Type': 'application/json' },
-     body : JSON.stringify({title:`${titleRef.current.value}`,
-                            text:`${textRef.current.value}`})
+     body : JSON.stringify({
+                            id:newsDetails.id,
+                            title:`${titleRef.current.value}`,
+                            text:`${textRef.current.value}`
+                          })
      }
      fetch(`https://localhost:44313/V1/News/${id}`,article)
+     console.log(article)
      .then(res => res.json()) 
+     console.log(article)
      .then(data => console.log(data))
+    // const article={ id:newsDetails.id,
+    //                         title:`${titleRef.current.value}`,
+    //                         text:`${textRef.current.value}`
+    //            }
+
+    // axios.put(`https://localhost:44313/V1/News/${id}`,article)
+    // console.log(article)
+    // .then(res=>console.log(res.data))
      
+    //  axios.put(`https://localhost:44313/V1/News/${id}`,
+    //  {            id:newsDetails.id,
+    //                           title:`${titleRef.current.value}`,
+    //                           text:`${textRef.current.value}`
+    //              }
+     
+    //  )
+    // .then(res=>console.log(res.data))
   }
 
   return (
     <div className="col-lg-8 padding-top">
-      <form method="post">
+      <form onSubmit={Edit}>
         <div class="form-group">
+        <label for="exampleInputEmail1">id</label>
+          <input
+          style={{color:'red'}}
+            type="text"
+            class="form-control"
+            onChange={onInputChange}
+            // ref={idRef}
+            value={newsDetails.id}
+          />
           <label for="exampleInputEmail1">title</label>
           <input
             type="text"
             class="form-control"
             onChange={onInputChange}
+            name="title"
             // value={newsDetails.title}
             ref={titleRef}
           />
@@ -54,6 +86,7 @@ const Edit = () => {
           <label for="exampleInputEmail1">text</label>
           <textarea
             type="text"
+            name="text"
             class="form-control"
             onChange={onInputChange}
             // value={newsDetails.text}
@@ -66,48 +99,21 @@ const Edit = () => {
             active?
           </label>
         </div>
-        <Link to={`/newsList`}>
+        {/* <Link to={`/newsList`}> */}
           <button 
-          onClick={saveChange}
+          // onClick={saveChange}
           class="btn btn-primary" type="submit"
           >
             save
           </button>
-        </Link>
-
+        {/* </Link> */}
+{/* 
         <Link to={`/newsList`}>
           <button class="btn btn-primary" type="submit">
             cancel
           </button>
-        </Link>
+        </Link> */}
       </form>
-
-      {/* 
-      <ul>
-        <li>
-          <textarea
-            onChange={onInputChange}
-            value={newsDetails.title}
-          ></textarea>
-        </li>
-        <li>
-          <textarea
-            onChange={onInputChange}
-            value={newsDetails.text}
-          ></textarea>
-        </li>
-        <Link to={`/newsList`}>
-          <li>
-            <button>save</button>
-          </li>
-        </Link>
-
-        <Link to={`/newsList`}>
-          <li>
-            <button>cancel</button>
-          </li>
-        </Link>
-      </ul> */}
     </div>
   );
 };
