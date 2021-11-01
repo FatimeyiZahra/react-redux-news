@@ -1,4 +1,4 @@
-import React, { useEffect,useRef } from "react";
+import React, { useEffect, useRef,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
@@ -8,102 +8,136 @@ import { setNewsDetails } from "../redux/actions/NewsAction";
 import "./style.css";
 
 const Edit = () => {
+
+  const [newssDetails, setNewsDetails] = useState([]);
+  const { id } = useParams();
+  useEffect(() => {
+    axios
+      .get(`https://localhost:44313/V1/News/news/${id}`)
+      .then((res) => setNewsDetails(res.data));
+  },[id]);
+  // console.log(newssDetails)
+
+
   const newsDetails = useSelector((state) => state.NewsReducer.newsDetails);
   //   console.log(newsDetails);
 
-  const dispatch = useDispatch();
-  const { id } = useParams();
+  // const dispatch = useDispatch();
+  // const { id } = useParams();
 
-  // const [title, setstate] = useState(initialState)
+  // useEffect(() => {
+  //   dispatch(setNewsDetails(id));
+  // }, [id]);
 
-  useEffect(() => {
-    dispatch(setNewsDetails(id));
-  }, []);
-  const onInputChange = (event) => {};
+  // -----------------------new version start--------------------
+
+  // const [articles, setArticle] = useState({title: newssDetails.title,
+    // text: newssDetails.text})
+  const onInputChange = (event) => {
+    setNewsDetails({...newssDetails, [event.target.name]:event.target.value});
+  };
+
+  // -----------------------new version end--------------------
+
+  // -----------------------new inputs start--------------------
+
+
+  const [state, setState] = useState({
+    title: newsDetails.title,
+    text: newsDetails.text
+  });
+ const handleChange = e => {
+   setState(state => ({...state, [e.target.name]: e.target.value}))
+  };
+
+  // -----------------------new inputs start--------------------
 
   const titleRef = useRef();
   const textRef = useRef();
 
-  const Edit=(e)=>{
+  const Edit = (e) => {
     e.preventDefault();
-    // const article = {
-    //   method : "PUT",
-    //   headers: { 'Content-Type': 'application/json' },
-    //  body : JSON.stringify({
-    //                         id:newsDetails.id,
-    //                         title:`${titleRef.current.value}`,
-    //                         text:`${textRef.current.value}`
-    //                       })
-    //  }
-    //  fetch(`https://localhost:44313/V1/News/${id}`,article)
-    //  console.log(article)
-    //  .then(res => res.json()) 
-    //  console.log(article)
-    //  .then(data => console.log(data))
-    const article={ id:newsDetails.id,
-                            title:`${titleRef.current.value}`,
-                            text:`${textRef.current.value}`
-               };
+    const article = {
+      id: newssDetails.id,
+      title: `${titleRef.current.value}`,
+      text: `${textRef.current.value}`,
+    };
 
-    axios.put(`https://localhost:44313/V1/News/${id}`,article)
-    console.log(article)
-   
-  }
+    axios.put(`https://localhost:44313/V1/News/${id}`, article);
+    console.log(article);
+  };
 
   return (
     <div className="col-lg-8 padding-top">
+      {/* <input
+        type="text"
+        className="name"
+        name="title"
+        value={state.title}
+        onChange={handleChange}
+      />
+
+      <input
+        type="text"
+        className="email"
+        name="text"
+        value={state.text}
+        onChange={handleChange}
+      /> */}
       <form onSubmit={Edit}>
-        <div class="form-group">
-        <label for="exampleInputEmail1">id</label>
-          <input
-          style={{color:'red'}}
+        <div className="form-group">
+          <label htmlFor="exampleInputEmail1">id</label>
+          {/* <input
+            style={{ color: "red" }}
             type="text"
-            class="form-control"
-            onChange={onInputChange}
-            // ref={idRef}
+            className="form-control"
+            ref={idRef}
             value={newsDetails.id}
-          />
-          <label for="exampleInputEmail1">title</label>
+          /> */}
+          <label htmlFor="exampleInputEmail1">title</label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             onChange={onInputChange}
             name="title"
-            // value={newsDetails.title}
+            defaultValue={newssDetails.title}
             ref={titleRef}
           />
         </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">text</label>
+        <div className="form-group">
+          <label htmlFor="exampleInputEmail1">text</label>
           <textarea
             type="text"
             name="text"
-            class="form-control"
+            className="form-control"
             onChange={onInputChange}
-            // value={newsDetails.text}
+            defaultValue={newssDetails.text}
             ref={textRef}
           />
         </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">
+        <div className="form-check">
+          <input
+            type="checkbox"
+            className="form-check-input"
+            id="exampleCheck1"
+          />
+          <label className="form-check-label" htmlFor="exampleCheck1">
             active?
           </label>
         </div>
         {/* <Link to={`/newsList`}> */}
-          <button 
+        <button
           // onClick={saveChange}
-          class="btn btn-primary" type="submit"
-          >
-            save
-          </button>
+          className="btn btn-primary"
+          type="submit"
+        >
+          save
+        </button>
         {/* </Link> */}
-{/* 
+
         <Link to={`/newsList`}>
-          <button class="btn btn-primary" type="submit">
-            cancel
-          </button>
-        </Link> */}
+          <p className="btn btn-primary">cancel</p>
+        </Link>
       </form>
     </div>
   );

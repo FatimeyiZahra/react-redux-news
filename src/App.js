@@ -9,6 +9,7 @@ import NewsList from "./manage/NewsList";
 import Edit from "./manage/Edit"
 import Details from "./manage/Details";
 import Create from "./manage/Create";
+import ChooseYourCharacter from "./app/testing";
 
 
 const App = () => {
@@ -36,6 +37,9 @@ const App = () => {
           </Route>
           <Route path="/create">
            <Create/>
+          </Route>
+          <Route path="/testing">
+           <ChooseYourCharacter/>
           </Route>
           <Route path="*">
            <NotMatch/>

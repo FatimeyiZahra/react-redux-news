@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { setNewsDetails } from "../../redux/actions/NewsAction";
