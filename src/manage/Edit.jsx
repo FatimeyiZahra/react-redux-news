@@ -10,7 +10,7 @@ import "./style.css";
 
 const Edit = () => {
   const [checked, setChecked] = useState(true);
-  const [newssDetails, setNewsDetails] = useState([]);
+  const [newssDetails, setNewsDetails] = useState({ title: '',text:'',status:false,categoryId:[] });
   console.log(newssDetails)
 
   const { id } = useParams();
