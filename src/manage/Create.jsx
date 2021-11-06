@@ -3,7 +3,7 @@ import axios from "axios";
 import "./style.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import { setAllCategory } from "../redux/actions/CategoryAction";
+import { setAllCategory } from "../redux/actions/CategoryAction";
 
 const Create = () => {
   const titleRef = useRef();
@@ -14,11 +14,11 @@ const Create = () => {
   const allCategories = useSelector(
     (state) => state.CategoryReducer.allCategory
   );
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //  dispatch(setAllCategory())
-  // }, []);
+  useEffect(() => {
+   dispatch(setAllCategory())
+  }, []);
 
   const handleSelect = function (selectedItems) {
     const flavors = [];
@@ -26,21 +26,21 @@ const Create = () => {
       flavors.push(selectedItems[i].value);
     }
     setSelectedFlavors(flavors);
-    console.log(flavors);
+    // console.log(flavors);
   };
   const Create = (e) => {
     e.preventDefault();
     const article = {
-      title: `${titleRef.current.value}`,
-      text: `${textRef.current.value}`,
+      title: titleRef.current.value,
+      text: textRef.current.value,
       status: checked,
       categoryId:selectedFlavors
     };
     console.log(article)
 
     axios
-      .post(`https://localhost:44313/V1/News`, article)
-      .then((res) => console.log(res.data));
+      .post(`https://localhost:44313/V1/News`, article);
+      // .then((res) => console.log(res.data));
   };
 
   return (

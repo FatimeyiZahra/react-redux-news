@@ -10,6 +10,7 @@ import Edit from "./manage/Edit"
 import Details from "./manage/Details";
 import Create from "./manage/Create";
 import ChooseYourCharacter from "./app/testing";
+import Edit1 from "./manage/Edit1";
 
 
 const App = () => {
@@ -30,7 +31,7 @@ const App = () => {
             <NewsList/>
           </Route>
           <Route  path="/edit/:id">
-            <Edit/>
+            <Edit1/>
           </Route>
           <Route  path="/details/:id">
             <Details/>

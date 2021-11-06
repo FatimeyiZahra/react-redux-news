@@ -12,6 +12,13 @@ const HomePage = () => {
     dispatch(getAllNews())
   }, []);
 
+  if(allNews){
+   allNews.map((item)=>{
+    console.log(item.categoryName.map(val => console.log(val)))
+
+   })
+  }
+
   return (
     <section id="last-added">
       <div className="container">
@@ -32,9 +39,9 @@ const HomePage = () => {
                       className="news-pic trans-03 shadow"
                       to={`/news/${item.id}`}
                     >
-                      {/* {item.newsCategories.map((cat) => ( */}
-                        <span className="category">{item.categoryName}</span>
-                       {/* ))}  */}
+                      {item.categoryName.map((cat) => (
+                        <span className="category">{cat}</span>
+                       ))}  
                       <img src={item.photos[0]} alt={item.title} />
                     </Link>
 

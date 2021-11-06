@@ -1,14 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 const initialState = {
   news: [],
-  newsDetails: {
-    id: "",
-    title: "",
-    photos: [],
-    text: "",
-    addedDate: "",
-  },
-  editNews:""
+  newsDetails: [],
 };
 
 const NewsReducer = (state = initialState, action) => {
