@@ -21,6 +21,14 @@ export const setNewsDetails=(id)=>dispatch=>{
     dispatch({type:actionTypes.Set_News_Details,payload:res.data})
   })
 }
+export const editNewsDetails=(id,article,push)=>dispatch=>{
+  // console.log(id)
+  axios.put(`https://localhost:44313/V1/News/${id}`, article)
+  .then((res)=>{
+    dispatch({type:actionTypes.Edit_News_Details,payload:res.data})
+    push(`/newsList`);
+  })
+}
 
 // export const editNewsDetails=(id,push)=>dispatch=>{
 //   axios.put(`https://localhost:44313/V1/News/${id}`)

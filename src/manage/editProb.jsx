@@ -3,41 +3,58 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { editNewsDetails, setNewsDetails } from "../redux/actions/NewsAction";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { setNewsDetails } from "../redux/actions/NewsAction";
 import "./style.css";
-
 
 const Edit = () => {
   const [checked, setChecked] = useState(true);
+
   const [newssDetails, setNewsDetails] = useState([]);
-  console.log(newssDetails)
-
   const { id } = useParams();
-  const history = useHistory();
-
   useEffect(() => {
     axios
       .get(`https://localhost:44313/V1/News/news/${id}`)
       .then((res) => setNewsDetails(res.data));
   }, [id]);
+  // console.log(newssDetails)
 
-  // const newsDetails = useSelector((state) => state.NewsReducer.newsDetails);
+
+  const newsDetails = useSelector((state) => state.NewsReducer.newsDetails);
   //   console.log(newsDetails);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  // const { id } = useParams();
 
   // useEffect(() => {
-  //   dispatch(setNewsDetails (id));
+  //   dispatch(setNewsDetails(id));
   // }, [id]);
 
+  // -----------------------new version start--------------------
+
+  // const [articles, setArticle] = useState({title: newssDetails.title,
+  // text: newssDetails.text})
   const onInputChange = (event) => {
     setNewsDetails({ ...newssDetails, [event.target.name]: event.target.value });
   };
 
+  // -----------------------new version end--------------------
+
+  // -----------------------new inputs start--------------------
+
+
+  const [state, setState] = useState({
+    title: newsDetails.title,
+    text: newsDetails.text
+  });
+  const handleChange = e => {
+    setState(state => ({ ...state, [e.target.name]: e.target.value }))
+  };
+
+  // -----------------------new inputs start--------------------
+
   const titleRef = useRef();
   const textRef = useRef();
-  
+
   const Edit = (e) => {
     e.preventDefault();
     const article = {
@@ -46,22 +63,37 @@ const Edit = () => {
       text: `${textRef.current.value}`,
       status: checked
     };
-    dispatch(editNewsDetails(id,article,history.push));
-    // axios.put(`https://localhost:44313/V1/News/${id}`, article);
+
+    axios.put(`https://localhost:44313/V1/News/${id}`, article);
     console.log(article);
   };
 
 
   return (
     <div className="col-lg-8 padding-top">
+      {/* <input
+        type="text"
+        className="name"
+        name="title"
+        value={state.title}
+        onChange={handleChange}
+      />
+
+      <input
+        type="text"
+        className="email"
+        name="text"
+        value={state.text}
+        onChange={handleChange}
+      /> */}
       <form onSubmit={Edit}>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">id</label>
-          {/* <input
+          <input
             style={{ color: "red" }}
             className="form-control"
             value={newssDetails.id}
-          /> */}
+          />
           <label htmlFor="exampleInputEmail1">title</label>
           <input
             type="text"
@@ -81,22 +113,6 @@ const Edit = () => {
             onChange={onInputChange}
             value={newssDetails.text}
             ref={textRef}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleInputEmail1">id</label>
-          {/* <input
-            style={{ color: "red" }}
-            className="form-control"
-            value={newssDetails.id}
-          /> */}
-          <label htmlFor="exampleInputEmail1">categories</label>
-          <input
-            type="text"
-            className="form-control"
-            onChange={onInputChange}
-            name="title"
-            value={newssDetails.categoryName}
           />
         </div>
         <div className="form-check">

@@ -8,6 +8,7 @@ const initialState = {
     text: "",
     addedDate: "",
   },
+  editNews:""
 };
 
 const NewsReducer = (state = initialState, action) => {
@@ -20,6 +21,8 @@ const NewsReducer = (state = initialState, action) => {
       return (state = { ...state, news: action.payload });
     case actionTypes.Set_All_Category:
       return (state = { ...state, allCategory: action.payload });
+      case actionTypes.Edit_News_Details:
+        return ({...state,newsDetails:{...state.newsDetails,...action.payload}});
     default:
       return state;
   }

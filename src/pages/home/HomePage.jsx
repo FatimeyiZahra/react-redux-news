@@ -33,8 +33,8 @@ const HomePage = () => {
                       to={`/news/${item.id}`}
                     >
                       {/* {item.newsCategories.map((cat) => ( */}
-                        <span className="category">{item.newsCategories}</span>
-                      {/* ))} */}
+                        <span className="category">{item.categoryName}</span>
+                       {/* ))}  */}
                       <img src={item.photos[0]} alt={item.title} />
                     </Link>
 
