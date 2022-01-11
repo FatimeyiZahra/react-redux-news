@@ -7,24 +7,22 @@ import axios from "axios";
 
 const Edit1 = () => {
     const [checked, setChecked] = useState(true);
-    const [editNews, setEditNews] = useState({})
+    const [editNews, setEditNews] = useState([])
 
     const { id } = useParams()
 
-    const onInputChange = (event) => {
-        setEditNews({ ...editNews, [event.target.name]: event.target.value });
-    };
-
     const newsDetails = useSelector(state => state.NewsReducer.newsDetails)
-    console.log(editNews)
-    
-
+    console.log(newsDetails)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(setNewsDetails(id));
-        // setEditNews(newsDetails)
-    }, [id]) 
+        setEditNews(newsDetails)
+    }, []) 
+    // const [editNews, setEditNews] = useState({title: newsDetails.title? newsDetails.title:""})
+     const onInputChange = (event) => {
+        // setEditNews({ ...editNews, [event.target.name]: event.target.value });
+    };
 
     const titleRef = useRef();
     const textRef = useRef();
@@ -32,9 +30,9 @@ const Edit1 = () => {
     const Edit = (e) => {
         e.preventDefault();
     };
-    // if(editNews){
-    //     console.log(editNews.title)
-    // }
+    if(editNews){
+        console.log(editNews.title)
+    }
 
     return (
         <>

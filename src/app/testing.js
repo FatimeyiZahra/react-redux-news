@@ -9,9 +9,17 @@ const ChooseYourCharacter = function (props) {
 
   useEffect(() => {
     axios
-      .get("https://localhost:44313/V1/News/categories")
+      .get(`https://localhost:44313/V1/News/categories/${region}`)
       .then((res) => setCategory(res.data));
   }, []);
+
+  const [region, setRegion] = useState("");
+  console.log(region)
+  const handleSelectFilter = (event) => {
+    setRegion(event.target.value);
+  
+  };
+
   // console.log(allCategories);
   const handleSelect = function (selectedItems) {
     const flavors = [];
@@ -26,6 +34,20 @@ const ChooseYourCharacter = function (props) {
 
   return (
     <form className="padding-top">
+      <div className="filter-wrapper">
+        <select
+          className="filter-select"
+          value={region}
+          onChange={handleSelectFilter}
+        >
+          <option value="">Search by Region</option>
+          <option value="Europe">Europe</option>
+          <option value="Asia">Asia</option>
+          <option value="Africa">Africa</option>
+          <option value="Americas">Americas</option>
+          <option value="Oceania">Oceania</option>
+        </select>
+      </div>
       <select
         multiple={true}
         value={selectedFlavors}

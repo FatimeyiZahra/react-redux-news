@@ -15,7 +15,7 @@ const NewsReducer = (state = initialState, action) => {
     case actionTypes.Set_All_Category:
       return (state = { ...state, allCategory: action.payload });
       case actionTypes.Edit_News_Details:
-        return ({...state,newsDetails:{...state.newsDetails,...action.payload}});
+        return (state ={...state,newsDetails:{...state.newsDetails,...action.payload}});
     default:
       return state;
   }

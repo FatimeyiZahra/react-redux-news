@@ -31,7 +31,7 @@ const App = () => {
             <NewsList/>
           </Route>
           <Route  path="/edit/:id">
-            <Edit1/>
+            <Edit/>
           </Route>
           <Route  path="/details/:id">
             <Details/>

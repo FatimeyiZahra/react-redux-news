@@ -12,12 +12,12 @@ const HomePage = () => {
     dispatch(getAllNews())
   }, []);
 
-  if(allNews){
-   allNews.map((item)=>{
-    console.log(item.categoryName.map(val => console.log(val)))
+  // if(allNews){
+  //  allNews.map((item)=>{
+  //   console.log(item.categoryName.map(val => console.log(val)))
 
-   })
-  }
+  //  })
+  // }
 
   return (
     <section id="last-added">

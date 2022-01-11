@@ -5,20 +5,20 @@ import axios from "axios";
 import "./style.css";
 
 const Details = () => {
-    const [checked, setChecked] = useState(true);
+ 
 
-    const [newssDetails, setNewsDetails] = useState([]);
+    const [newssDetails, setNewsDetails] = useState({id:'', title: '',text:'',categoryId:[] });
     const { id } = useParams();
     useEffect(() => {
         axios
             .get(`https://localhost:44313/V1/News/news/${id}`)
             .then((res) => setNewsDetails(res.data));
     }, [id]);
-
-    const onInputChange = (event) => {
-        setNewsDetails({ ...newssDetails, [event.target.name]: event.target.value });
-    };
-
+    console.log(newssDetails)
+    const onInputChange = (event) => {};
+    
+   const [checked, setChecked] = useState(newssDetails.status);
+   console.log(checked)
     const titleRef = useRef();
     const textRef = useRef();
 
@@ -31,7 +31,9 @@ const Details = () => {
                     <input
                         style={{ color: "red" }}
                         className="form-control"
-                        value={newssDetails.id}
+                        value={newssDetails.id|| ''}
+                        onChange={onInputChange}
+
                     />
                     <label htmlFor="exampleInputEmail1">title</label>
                     <input
@@ -39,7 +41,7 @@ const Details = () => {
                         className="form-control"
                         onChange={onInputChange}
                         name="title"
-                        defaultValue={newssDetails.title}
+                        value={newssDetails.title|| ''}
                         ref={titleRef}
                     />
                 </div>
@@ -50,7 +52,7 @@ const Details = () => {
                         name="text"
                         className="form-control"
                         onChange={onInputChange}
-                        defaultValue={newssDetails.text}
+                        value={newssDetails.text|| ''}
                         ref={textRef}
                     />
                 </div>

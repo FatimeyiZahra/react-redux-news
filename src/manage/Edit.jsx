@@ -7,11 +7,12 @@ import { editNewsDetails, setNewsDetails } from "../redux/actions/NewsAction";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import "./style.css";
 
-
 const Edit = () => {
-  const [checked, setChecked] = useState(true);
-  const [newssDetails, setNewsDetails] = useState({ title: '',text:'',status:false,categoryId:[] });
-  console.log(newssDetails)
+  // const [newssDetails, setNewsDetails] = useState({ ktitle: '',text:'',status:false,categoryId:[] });
+  const [newssDetails, setNewsDetails] = useState({});
+
+  console.log(newssDetails);
+  // const [checked, setChecked] = useState(false);
 
   const { id } = useParams();
   const history = useHistory();
@@ -20,8 +21,16 @@ const Edit = () => {
     axios
       .get(`https://localhost:44313/V1/News/news/${id}`)
       .then((res) => setNewsDetails(res.data));
+    // if (Boolean(newssDetails.status) === true) {
+    //   setChecked(true);
+    //   console.log("trrr");
+    // } else {
+    //   setChecked(false);
+    //   console.log("deee");
+    // }
   }, [id]);
 
+  // console.log(checked);
   // const newsDetails = useSelector((state) => state.NewsReducer.newsDetails);
   //   console.log(newsDetails);
 
@@ -32,25 +41,35 @@ const Edit = () => {
   // }, [id]);
 
   const onInputChange = (event) => {
-    setNewsDetails({ ...newssDetails, [event.target.name]: event.target.value });
+    setNewsDetails({
+      ...newssDetails,
+      [event.target.name]: event.target.value,
+    });
   };
 
   const titleRef = useRef();
   const textRef = useRef();
-  
+  const checkRef = useRef();
+  // console.log(checkRef.current)
+ 
   const Edit = (e) => {
     e.preventDefault();
     const article = {
       id: newssDetails.id,
       title: `${titleRef.current.value}`,
       text: `${textRef.current.value}`,
-      status: checked
+      status: checkRef.current.checked,
     };
-    dispatch(editNewsDetails(id,article,history.push));
+    console.log(checkRef.current.checked)
+    // if (checkRef.current.checked === true) {
+    //   console.log("trte");
+    // } else {
+    //   console.log("deyil");
+    // }
+    dispatch(editNewsDetails(id, article, history.push));
     // axios.put(`https://localhost:44313/V1/News/${id}`, article);
     console.log(article);
   };
-
 
   return (
     <div className="col-lg-8 padding-top">
@@ -102,8 +121,15 @@ const Edit = () => {
         <div className="form-check">
           <input
             type="checkbox"
-            checked={checked}
-            onChange={e => setChecked(e.target.checked)}
+            defaultChecked={newssDetails.status}
+            // checked={newssDetails.status}
+            // checked={newssDetails.status&&checked===true?true:false}
+            // name="status"
+            //   onChange={() => {
+            //     checked === true ? setChecked(false) : setChecked(true)
+            //  }}
+            ref={checkRef}
+            // onChange={(e) => setChecked(e.target.checked)}
           />
         </div>
         {/* <Link to={`/newsList`}> */}
